@@ -1,19 +1,4 @@
-<h1>Survey Designer Portal</h1>
-<h3>Survey designers may edit survey information here</h3>
+<h1>Survey Central</h1>
 
-<p><a href='/surveys/new'>Add a new survey</a></p>
-
-<h3>Here are the current surveys:</h3>
-
-  <% if @surveys.any?() %>
-
-    <p>Click on the survey to see current questions and to add questions</p>
-
-    <ul>
-      <% @surveys.each do |survey| %>
-      <li><a href="/surveys/<%= survey.id() %>"><%= survey.name() %></a></li>
-      <% end %>
-    </ul>
-    <% else %>
-      <p>There are no surveys listed yet!</p>
-    <% end %>
+<a href='/designer'>Survey Designers</a>
+<a href='/taker'>Take a Survey</a>

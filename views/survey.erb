@@ -16,6 +16,18 @@
   <label for="question_name">Add a question: </label>
   <input type="text" name="question_name" id="question_name">
   <br>
+  <label for="response_1">Enter in Choice 1</label>
+  <input type="text" name="response_1" id="response_1">
+  <br>
+  <label for="response_2">Enter in Choice 2</label>
+  <input type="text" name="response_2" id="response_2">
+  <br>
+  <label for="response_3">Enter in Choice 3</label>
+  <input type="text" name="response_3" id="response_3">
+  <br>
+  <label for="response_4">Enter in Choice 4</label>
+  <input type="text" name="response_4" id="response_4">
+  <br>
   <button type="submit" name="question_name_button">Submit</button>
 </form>
 
@@ -28,4 +40,12 @@
     <% end %>
   </select>
   <button type="submit">Delete Question</button>
+</form>
+
+<h3>Update the survey name</h3>
+<form action="/surveys/<%= @survey.id() %>" method="post">
+  <input name="_method" type="hidden" value="patch">
+  <label for="name">Update survey name:</label>
+  <input type="text" name="survey_name" id="survey_name">
+    <button type="submit">Update</button>
 </form>

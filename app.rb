@@ -11,9 +11,18 @@ get('/') do
   erb(:index)
 end
 
+get('/designer') do
+  @questions = Question.all()
+  @surveys = Survey.all()
+  erb(:designer)
+end
+
 get('/surveys') do
   @surveys = Survey.all()
   erb(:surveys)
+end
+
+get('/takers') do
 end
 
 
@@ -70,7 +79,11 @@ patch('/surveys/:id/add_question') do
   @id = params.fetch('id').to_i()
   @survey = Survey.find(@id)
   question_name = params.fetch('question_name')
-  @survey.questions().create({:name => question_name})
+  response_1 = params.fetch('response_1')
+  response_2 = params.fetch('response_2')
+  response_3 = params.fetch('response_3')
+  response_4 = params.fetch('response_4')
+  @survey.questions().create({:name => question_name, :response_1 => response_1, :response_2 => response_2, :response_3 => response_3, :response_4 => response_4})
   redirect('/surveys/' + @id.to_s())
 end
 
@@ -81,4 +94,12 @@ delete('/surveys/:id') do
   question.update({:survey_id => nil})
   @questions = Question.all()
   redirect('/surveys/' + @id.to_s())
+end
+
+patch('/surveys/:id') do
+  survey_id = params.fetch("id").to_i()
+  @survey = Survey.find(survey_id)
+  name = params.fetch("survey_name")
+  @survey.update({:name => name})
+  redirect('/surveys/' + survey_id.to_s())
 end
