@@ -1,0 +1,34 @@
+<h2>Add a Survey</h2>
+<br>
+<hr>
+
+<% if @surveys.any?() == false %>
+
+  <p>There are currently no surveys in the database</p>
+  <br>
+  <form id="new_survey" action="/surveys/new" method="post">
+    <label for="survey_name">Name the survey:  </label>
+    <input type="text" name="survey_name" id="survey_name">
+    <br>
+    <button type="submit" name="first_survey">Add Survey</button>
+  </form>
+
+<% else %>
+
+  <p>Current surveys</p>
+
+  <ul>
+    <% @surveys.each do |survey| %>
+    <li><a href="/surveys/<%= survey.id() %>"><%= survey.name() %></a></li>
+    <% end %>
+  </ul>
+  <br>
+  <form id="new_survey_2" action="/surveys/new" method="post">
+    <label for="survey_name">Name the survey:  </label>
+    <input type="text" name="survey_name" id="survey_name">
+    <br>
+    <button type="submit">Add Survey</button>
+  </form>
+
+
+<% end %>

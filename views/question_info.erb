@@ -1,0 +1,20 @@
+<h1>Question Information Page</h1>
+<h2>Name: <%= @question.name()%></h2>
+<% if @question.survey() == nil %>
+<h3>Survey:  Not part of any survey</h3>
+<% else %>
+<h3>Survey this question is available on:  <a href="/surveys/<%= @question.survey().id() %>"><%= @question.survey().name() %></a></h3>
+<% end %>
+
+<br>
+<br>
+
+<p>Want to change the question's name?</p>
+<form action="/questions/<%= @question.id() %>/update" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <label for="update_question_name">Enter the new name:  </label>
+  <input type="text" id="update_question_name" name="update_question_name">
+  <br>
+  <br>
+  <button type="submit">Change Question Name</button>
+</form>

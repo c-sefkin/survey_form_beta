@@ -1,0 +1,31 @@
+<h1>Survey Information Page</h1>
+<h2>Name: <%= @survey.name()%></h2>
+<% if @survey.questions == [] %>
+<h3>No questions listed!</h3>
+<% else %>
+<h3>Questions listed on this survey:</h3>
+  <ul>
+    <% @survey.questions().each do |question| %>
+    <li><a href="/questions/<%= question.id() %>"><%= question.name()%></a></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<form id="new_questions" action="/surveys/<%= @survey.id() %>/add_question" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <label for="question_name">Add a question: </label>
+  <input type="text" name="question_name" id="question_name">
+  <br>
+  <button type="submit" name="question_name_button">Submit</button>
+</form>
+
+<h3>Delete this question from the survey</h3>
+<form action='/surveys/<%= @survey.id() %>' method="post">
+  <input type="hidden" name="_method" value="delete">
+  <select name="question_id" id="question_select">
+    <% @survey.questions().each() do |question| %>
+      <option value="<%= question.id() %>"><%= question.name() %></option>
+    <% end %>
+  </select>
+  <button type="submit">Delete Question</button>
+</form>

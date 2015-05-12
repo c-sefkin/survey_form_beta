@@ -1,0 +1,21 @@
+<h2>Add a question</h2>
+<br>
+<hr>
+
+<% if @questions.any?() == false %>
+
+  <p>There are currently no questions in the database</p>
+  <br>
+  <p><a href="/questions/new">Add a question</a></p>
+
+<% else %>
+
+  <p>Current questions</p>
+
+  <ul>
+    <% @questions.each do |question| %>
+    <li><a href="/questions/<%= question.id() %>"><%= question.name() %></a></li>
+    <% end %>
+  </ul>
+
+<% end %>
