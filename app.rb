@@ -4,6 +4,7 @@ require('sinatra/reloader')
 also_reload('lib/**/*.rb')
 require('./lib/question')
 require('./lib/survey')
+require('./lib/taker')
 require('pg')
 
 get('/') do
@@ -22,9 +23,30 @@ get('/surveys') do
   erb(:surveys)
 end
 
-get('/takers') do
+get('/taker') do
+  @surveys = Survey.all()
+  erb(:takers)
 end
 
+get('/surveys/:id/takers') do
+  id=params.fetch("id").to_i()
+  @survey = Survey.find(id)
+  @survey_questions = @survey.questions()
+  # @survey_questions = Question.paginate(:page => params[:page])
+  @survey.takers().create({:name => "test"})
+  erb(:survey_taker_page)
+end
+
+post('/results/:id') do
+  @id = params.fetch('id').to_i()
+  @survey = Survey.find(@id)
+  @question_response1 = params.fetch({:question_response1 => question_response1})
+  @question_response2 = params.fetch('question_response2')
+  @question_response3 = params.fetch('question_response3')
+  @question_response4 = params.fetch('question_response4')
+
+  erb(:results)
+end
 
 
 get('/surveys/new') do

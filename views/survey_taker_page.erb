@@ -1,0 +1,22 @@
+<h2>Placeholder McPlacerson</h2>
+<hr>
+<br>
+
+
+
+<% @survey_questions.each() do |question| %>
+<form action="/results/<%= @survey.id() %>" method="post">
+
+
+
+  <p><%= question.name() %>
+  <ul>
+
+    <input type="checkbox" name="question_response1" value="<%= question.response_1() %>"><%= question.response_1() %>
+    <input type="checkbox" name="question_response2" value="<%= question.response_2() %>"><%= question.response_2() %>
+    <input type="checkbox" name="question_response3" value="<%= question.response_3() %>"><%= question.response_3() %>
+    <input type="checkbox" name="question_response4" value="<%= question.response_4() %>"><%= question.response_4() %>
+  </ul>
+<% end %>
+<button type="submit">Submit Your Response</button>
+</form>

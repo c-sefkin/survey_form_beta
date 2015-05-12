@@ -1,6 +1,7 @@
 class Survey < ActiveRecord::Base
   has_many(:questions)
   before_save(:capitalize_title)
+  has_many(:takers)
 
 
 

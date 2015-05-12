@@ -1,0 +1,13 @@
+<h1>Welcome to the Survey Page!</h1>
+<h3>Please choose a survey to begin:</h3>
+
+<% if @surveys.any?() %>
+
+  <ul>
+    <% @surveys.each do |survey| %>
+    <li><a href="/surveys/<%= survey.id() %>/takers"><%= survey.name() %></a></li>
+    <% end %>
+  </ul>
+  <% else %>
+    <p>There are no surveys available at this time.</p>
+    <% end %>
